@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		// Cloudflare Workers run on a modern V8 - we can target the latest JS/DOM-less lib.
+		"target": "es2022",
+		"lib": ["es2022"],
+		"module": "es2022",
+		"moduleResolution": "bundler",
+
+		// Workers-specific globals (WebSocket, DurableObject, Request, Response, ...).
+		"types": ["@cloudflare/workers-types"],
+
+		// wrangler/esbuild does the actual bundling - tsc here is purely for type-checking.
+		"noEmit": true,
+		"isolatedModules": true,
+		"skipLibCheck": true,
+		"resolveJsonModule": true,
+
+		// Strictness - catch mistakes at compile time instead of at runtime in production.
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": ["src"]
+}

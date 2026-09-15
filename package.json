@@ -1,0 +1,16 @@
+{
+  "name": "game-rooms-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260914.1",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.0.0"
+  }
+}
