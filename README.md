@@ -15,7 +15,7 @@ Game clients often need a simple backend for room creation, player presence, and
 - **Realtime WebSocket protocol** for host/player sessions and object updates.
 - **Built-in room state management** for connections, presence, lock state, and shared objects.
 - **Role-aware permissions** so host and player actions can be gated by opcode and ACL rules.
-- **Documented wire protocol** in [`/home/runner/work/Game-Rooms-Worker/Game-Rooms-Worker/.github/PROTOCOL.md`](/home/runner/work/Game-Rooms-Worker/Game-Rooms-Worker/.github/PROTOCOL.md).
+- **Documented wire protocol** in [`PROTOCOL.md`](.github/PROTOCOL.md).
 
 ## Architecture
 
