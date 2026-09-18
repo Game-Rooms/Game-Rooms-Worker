@@ -146,4 +146,4 @@ Issues and pull requests are welcome.
 
 ## License
 
-This project is distributed under the MIT License. See [`LICENSE`](LICENSE).
+See [`LICENSE`](LICENSE) for licensing details.
