@@ -52,7 +52,7 @@ npx wrangler login
 npm run dev
 ```
 
-By default, Wrangler serves the Worker from `src/index.ts` using the configuration in [`wrangler.jsonc`](wrangler.jsonc).
+Local development uses the checked-in [`wrangler.jsonc`](wrangler.jsonc) configuration, with `src/index.ts` as the Worker entrypoint.
 
 ### Deploy
 
@@ -138,7 +138,7 @@ The Worker configuration lives in [`wrangler.jsonc`](wrangler.jsonc). The curren
 - registers the Worker as `game-rooms`
 - uses `src/index.ts` as the entrypoint
 - binds a Durable Object namespace named `ROOMS`
-- creates the SQLite-backed Durable Object class `Room` through the `v1` migration
+- includes a Durable Object migration for the SQLite-backed `Room` class
 
 ## Contributing
 
