@@ -119,7 +119,7 @@ npm run deploy     # Deploy the Worker
 node scripts/smoketest.js
 ```
 
-After `npm install`, running `node scripts/smoketest.js` uses the project's local Wrangler install to start `wrangler dev`, create a room, connect test clients, and provide a quick end-to-end check against a locally running worker.
+The smoke test is self-contained: after `npm install`, running `node scripts/smoketest.js` uses the project's local Wrangler install to start a temporary `wrangler dev` process, create a room, connect test clients, and perform a quick end-to-end check.
 
 ## Project structure
 
