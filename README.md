@@ -65,7 +65,7 @@ The Worker exposes a minimal HTTP surface for room lifecycle and bootstrap data:
 
 | Method | Path | Purpose |
 | --- | --- | --- |
-| `POST` | `/api/v2/rooms` | Create a room and return its 4-letter code |
+| `POST` | `/api/v2/rooms` | Create a room and return its room code |
 | `GET` | `/api/v2/app-configs/{appId}` | Return generic app configuration |
 | `GET` | `/api/v2/rooms/{code}` | Return room join info such as `locked` and `full` |
 | `GET` | `/api/v2/rooms/{code}/ws?role=host` | Open the host WebSocket session |
@@ -78,7 +78,7 @@ Room creation returns the data clients need to bootstrap a new room session, whi
 Once connected, clients communicate using JSON messages shaped around opcodes:
 
 - **Client → server:** `{ opcode, seq, params }`
-- **Server → client:** `{ pc, opcode, result, re? }`
+- **Server → client:** `{ pc, opcode, result, re? }`, where `pc` is the server-side message counter for that connection and `re` appears when a message is replying to a client `seq`
 
 The protocol supports:
 
@@ -134,7 +134,7 @@ The Worker configuration lives in [`wrangler.jsonc`](wrangler.jsonc). The curren
 - registers the Worker as `game-rooms`
 - uses `src/index.ts` as the entrypoint
 - binds a Durable Object namespace named `ROOMS`
-- includes a Durable Object migration for the SQLite-backed `Room` class
+- includes a Durable Object migration for the `Room` class
 
 ## Contributing
 
