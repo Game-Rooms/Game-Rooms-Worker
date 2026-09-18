@@ -40,20 +40,24 @@ The top-level Worker handles room creation, room lookup, and WebSocket upgrade r
 ### Prerequisites
 
 - Node.js 18 or newer
-- A Cloudflare account with Workers enabled
-- Wrangler authentication (`npx wrangler login`)
+- A Cloudflare account with Workers enabled for deployment
 
 ### Install and run locally
 
 ```powershell
 npm install
-npx wrangler login
 npm run dev
 ```
 
 Local development uses the checked-in [`wrangler.jsonc`](wrangler.jsonc) configuration, with `src/index.ts` as the Worker entrypoint.
 
 ### Deploy
+
+Authenticate with Cloudflare before deploying:
+
+```powershell
+npx wrangler login
+```
 
 ```powershell
 npm run deploy
@@ -65,13 +69,13 @@ The Worker exposes a minimal HTTP surface for room lifecycle and bootstrap data:
 
 | Method | Path | Purpose |
 | --- | --- | --- |
-| `POST` | `/api/v2/rooms` | Create a room and return its room code |
+| `POST` | `/api/v2/rooms` | Create a room and return room bootstrap data |
 | `GET` | `/api/v2/app-configs/{appId}` | Return generic app configuration |
 | `GET` | `/api/v2/rooms/{code}` | Return room join info such as `locked` and `full` |
 | `GET` | `/api/v2/rooms/{code}/ws?role=host` | Open the host WebSocket session |
 | `GET` | `/api/v2/rooms/{code}/ws?role=player&name=Bob` | Open a player WebSocket session |
 
-Room creation returns the data clients need to bootstrap a new room session, while room lookup returns metadata including the room's current lock and capacity status.
+Room creation returns the bootstrap payload for a new room session, including the generated room code and connection host details. Room lookup returns metadata including the room's current lock and capacity status.
 
 ## WebSocket protocol
 
