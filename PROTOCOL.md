@@ -27,10 +27,10 @@ number of **players**.
 ## 1. HTTP API
 
 All responses are JSON with `Content-Type: application/json` and
-`Access-Control-Allow-Origin: *` (no CORS preflight handling beyond that —
-there's no `OPTIONS` handler, so browser clients doing a simple GET/POST
-with only `Content-Type: application/json` should be fine, but custom
-headers will trigger a preflight the Worker doesn't answer).
+`Access-Control-Allow-Origin: *` (there is no `OPTIONS` handler, so browser
+requests that trigger CORS preflight — including JSON POSTs using
+`Content-Type: application/json` or requests with custom headers — are not
+handled by this Worker as written).
 
 Every JSON response has the shape `{ ok: boolean, body?: {...}, error?: string }`
 except the plain 404 fallbacks noted below, which are `{}`.
@@ -125,7 +125,9 @@ GET /api/v2/rooms/<code>
   `moderationEnabled`, `passwordRequired`, `twitchLocked`, `locale`,
   `keepalive`.
 
-  `locked` and `full` reflect real room state — see §2.3/§2.4.
+  `locked` and `full` reflect whether new players may currently join:
+  `locked` follows `room/lock` (§5), while `full` becomes `true` once the
+  room reaches `maxPlayers` (§2.2).
 
 - `404` `{}` if the room code doesn't correspond to an active room (never
   created, or the host has since disconnected/exited).
@@ -215,7 +217,7 @@ arrive). Nothing else should be sent by the client before receiving this.
 ```
 
 The host's `entities`/`here` are always empty since connecting as host
-always starts a fresh room (see §2.2).
+always starts a fresh room (see §2.2 and §6).
 
 **Player welcome result:**
 
