@@ -27,10 +27,10 @@ number of **players**.
 ## 1. HTTP API
 
 All responses are JSON with `Content-Type: application/json` and
-`Access-Control-Allow-Origin: *` (there is no `OPTIONS` handler, so browser
-requests that trigger CORS preflight — including JSON POSTs using
-`Content-Type: application/json` or requests with custom headers — are not
-handled by this Worker as written).
+`Access-Control-Allow-Origin: *`. There is no `OPTIONS` handler, so
+cross-origin browser requests that trigger CORS preflight — including
+`POST /api/v2/rooms` with a JSON body and requests with custom headers —
+are not supported by this Worker as written.
 
 Every JSON response has the shape `{ ok: boolean, body?: {...}, error?: string }`
 except the plain 404 fallbacks noted below, which are `{}`.
