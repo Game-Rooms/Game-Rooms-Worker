@@ -27,10 +27,10 @@ number of **players**.
 ## 1. HTTP API
 
 All responses are JSON with `Content-Type: application/json` and
-`Access-Control-Allow-Origin: *`. There is no `OPTIONS` handler, so
-cross-origin browser requests that trigger CORS preflight — including
-`POST /api/v2/rooms` with a JSON body and requests with custom headers —
-are not supported by this Worker as written.
+`Access-Control-Allow-Origin: *`. There is no `OPTIONS` handler. As
+implemented, cross-origin browser calls to `POST /api/v2/rooms` are not
+supported because JSON requests preflight, and browser requests with custom
+headers are unsupported for the same reason.
 
 Every JSON response has the shape `{ ok: boolean, body?: {...}, error?: string }`
 except the plain 404 fallbacks noted below, which are `{}`.
@@ -126,8 +126,9 @@ GET /api/v2/rooms/<code>
   `keepalive`.
 
   `locked` and `full` reflect whether new players may currently join:
-  `locked` follows `room/lock` (§5), while `full` becomes `true` once the
-  room reaches `maxPlayers` (§2.2).
+  `locked` follows `room/lock` (§5) and stays `true` for the rest of the
+  active room session, while `full` becomes `true` once the room reaches
+  `maxPlayers` (§2.2).
 
 - `404` `{}` if the room code doesn't correspond to an active room (never
   created, or the host has since disconnected/exited).
