@@ -121,16 +121,6 @@ node scripts/smoketest.js
 
 The smoke test is self-contained: after `npm install`, running `node scripts/smoketest.js` uses the project's local Wrangler install to start a temporary `wrangler dev` process, create a room, connect test clients, and perform a quick end-to-end check.
 
-## Project structure
-
-- `src/index.ts` — HTTP routes, room code generation, and Durable Object lookup
-- `src/engine/room.ts` — Durable Object room lifecycle and WebSocket handling
-- `src/engine/router.ts` — non-object opcode dispatch
-- `src/engine/gameobject.ts` — shared object behavior and object opcode handling
-- `src/engine/state.ts` — persisted room state and connection/object bookkeeping
-- `src/objects/` — concrete object types
-- `scripts/smoketest.js` — end-to-end smoke test
-
 ## Configuration
 
 The Worker configuration lives in [`wrangler.jsonc`](wrangler.jsonc). The current setup:
