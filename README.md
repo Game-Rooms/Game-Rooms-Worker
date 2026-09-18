@@ -119,7 +119,7 @@ npm run deploy     # Deploy the Worker
 node scripts/smoketest.js
 ```
 
-The smoke test starts `wrangler dev`, creates a room, connects test clients, and provides a quick end-to-end check against a locally running worker.
+Running `node scripts/smoketest.js` starts `wrangler dev`, creates a room, connects test clients, and provides a quick end-to-end check against a locally running worker.
 
 ## Project structure
 
