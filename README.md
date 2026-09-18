@@ -15,7 +15,7 @@ Game clients often need a simple backend for room creation, player presence, and
 - **Realtime WebSocket protocol** for host/player sessions and object updates.
 - **Built-in room state management** for connections, presence, lock state, and shared objects.
 - **Role-aware permissions** so host and player actions can be gated by opcode and ACL rules.
-- **Documented wire protocol** in [`PROTOCOL.md`](.github/PROTOCOL.md).
+- **Documented wire protocol** in [`PROTOCOL.md`](PROTOCOL.md).
 
 ## Architecture
 
@@ -88,7 +88,7 @@ The protocol supports:
 - room-level actions such as `room/lock`, `room/exit`, `drop`, and `client/send`
 - ACL-based player visibility and write restrictions
 
-For the full protocol contract, examples, and semantics, see [`PROTOCOL.md`](.github/PROTOCOL.md).
+For the full protocol contract, examples, and semantics, see [`PROTOCOL.md`](PROTOCOL.md).
 
 ## Shared object model
 
@@ -128,7 +128,7 @@ The smoke test starts `wrangler dev`, creates a room, connects test clients, and
 - `src/engine/gameobject.ts` — shared object behavior and object opcode handling
 - `src/engine/state.ts` — persisted room state and connection/object bookkeeping
 - `src/objects/` — concrete object types
-- `.github/PROTOCOL.md` — protocol reference
+- `PROTOCOL.md` — protocol reference
 - `scripts/smoketest.js` — end-to-end smoke test
 
 ## Configuration
@@ -142,7 +142,7 @@ The Worker configuration lives in [`wrangler.jsonc`](wrangler.jsonc). The curren
 
 ## Contributing
 
-Issues and pull requests are welcome. When changing protocol or room behavior, keep [`PROTOCOL.md`](.github/PROTOCOL.md) aligned with the implementation.
+Issues and pull requests are welcome. When changing protocol or room behavior, keep [`PROTOCOL.md`](PROTOCOL.md) aligned with the implementation.
 
 ## License
 
