@@ -72,7 +72,7 @@ The Worker exposes a minimal HTTP surface for room lifecycle and bootstrap data:
 | `GET` | `/api/v2/rooms/{code}/ws?role=host` | Open the host WebSocket session |
 | `GET` | `/api/v2/rooms/{code}/ws?role=player&name=Bob` | Open a player WebSocket session |
 
-Room creation returns the host domain, room code, and a placeholder token field for client compatibility. Room lookup returns metadata including the room's current lock and capacity status.
+Room creation returns the data clients need to bootstrap a new room session, while room lookup returns metadata including the room's current lock and capacity status.
 
 ## WebSocket protocol
 
@@ -118,7 +118,7 @@ npm run deploy     # Deploy the Worker
 node scripts/smoketest.js
 ```
 
-The smoke test starts `wrangler dev`, creates a room, connects a host and player, and exercises the main protocol flow including create, update, get, lock, relay, drop, and room exit behavior.
+The smoke test starts `wrangler dev`, creates a room, connects test clients, and verifies the main room lifecycle and protocol flow end to end.
 
 ## Project structure
 
