@@ -27,10 +27,10 @@ number of **players**.
 ## 1. HTTP API
 
 All responses are JSON with `Content-Type: application/json` and
-`Access-Control-Allow-Origin: *`. There is no `OPTIONS` handler. As
-implemented, cross-origin browser calls to `POST /api/v2/rooms` are not
-supported because JSON requests preflight, and browser requests with custom
-headers are unsupported for the same reason.
+`Access-Control-Allow-Origin: *`. The Worker itself does not implement an
+`OPTIONS` handler, so cross-origin browser requests that rely on CORS
+preflight (for example JSON POSTs or requests with custom headers) should be
+verified against the deployed service before a client depends on them.
 
 Every JSON response has the shape `{ ok: boolean, body?: {...}, error?: string }`
 except the plain 404 fallbacks noted below, which are `{}`.
